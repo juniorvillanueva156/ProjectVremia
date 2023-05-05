@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Vremia</string>
+    <string name="nocontent_message">There's no content.</string>
+    <string name="addtasktoolbar_header">Add a Task</string>
+</resources>
