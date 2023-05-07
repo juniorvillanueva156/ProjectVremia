@@ -8,6 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="main_blue">#3F51B5</color>
-    <color name="main_blue_light">#7986CB</color>
+    <color name="main_blue">#005bdb</color>
+    <color name="main_blue_light">#007dfd</color>
+    <color name="default_text_color">#000</color>
+    <color name="default_app_background">#fff</color>
+    <color name="main_pastelgreen">#74c69d</color>
+    <color name="main_pastelgreen_light">#95d5b2</color>
 </resources>
