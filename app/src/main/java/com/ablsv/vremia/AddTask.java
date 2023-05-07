@@ -52,7 +52,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         cancelbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish()
+                finish();
             }
         });
 
