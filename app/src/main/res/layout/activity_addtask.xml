@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/default_app_background">
+        android:background="@color/default_app_background"
+        android:orientation="vertical">
 
         <include
             android:id="@+id/addtaskToolbar"
@@ -43,10 +44,10 @@
                 android:id="@+id/imageSelector_addtask"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginVertical="10dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:layout_marginVertical="10dp"
                 android:padding="5dp"
                 android:src="@drawable/image_placeholder_foreground"
                 app:civ_border_color="@color/main_blue"
@@ -62,11 +63,57 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <RelativeLayout
+            android:id="@+id/nameanddesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tasktitletext"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="center|start"
+                android:text="Task Name:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/tasktitleinput"
+                android:layout_below="@id/tasktitletext"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginBottom="20dp"
+                android:hint="Enter Task Name"
+                android:textSize="17sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/taskdescrtext"
+                android:layout_below="@id/tasktitleinput"
+                android:text="Task Description:"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="center|start"
+                android:textSize="17sp"/>
+
+            <EditText
+                android:id="@+id/taskdescrinput"
+                android:layout_below="@id/taskdescrtext"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="30dp"
+                android:hint="Enter Task Description"
+                android:textSize="17sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/datetimepickercontainer_addtask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imagepickercontainer_addtask"
-            android:layout_centerHorizontal="true"
             android:background="@color/default_app_background"
             android:paddingVertical="10dp">
 
@@ -91,9 +138,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:background="@color/main_blue"
+                android:paddingHorizontal="10dp"
                 android:text="@string/open_date_and_time_picker"
                 android:textColor="@color/white"
-                android:paddingHorizontal="10dp"
                 android:textSize="13sp" />
 
         </RelativeLayout>
@@ -102,7 +149,6 @@
             android:id="@+id/colorpickcontainer"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_below="@id/datetimepickercontainer_addtask"
             android:layout_marginTop="-4dp"
             android:background="@color/default_app_background"
             android:padding="10dp"
@@ -143,12 +189,12 @@
             <EditText
                 android:id="@+id/colorpickerhexinput"
                 android:layout_width="200dp"
-                android:hint="@string/ffffff"
                 android:layout_height="48dp"
                 android:layout_marginHorizontal="20dp"
+                android:hint="@string/ffffff"
                 android:inputType="textNoSuggestions"
                 android:paddingHorizontal="15dp"
-                android:textColor="@color/white"
+                android:textColor="@color/default_text_color"
                 android:textColorHint="@color/material_on_background_disabled"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -185,5 +231,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>
