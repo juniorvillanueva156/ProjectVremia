@@ -82,10 +82,14 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
                 String imageData = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
-                SaveLoad svl = new SaveLoad();
-                svl.Save(tasktitleinput.getText().toString(), taskdescrinput.getText().toString(), taskColor, date_year, date_month, date_dayofmonth, time_hour, time_minute, imageData, AddTask.this);
+                DatabaseHelper svl = new DatabaseHelper(AddTask.this);
+                svl.addTask(tasktitleinput.getText().toString(), taskdescrinput.getText().toString(), taskColor, date_year, date_month, date_dayofmonth, time_hour, time_minute, imageData);
 
                 Toast.makeText(AddTask.this, "Your task is created.", Toast.LENGTH_SHORT).show();
+
+                Intent intentToMain = new Intent(AddTask.this, MainActivity.class);
+                startActivity(intentToMain);
+
                 finish();
             }
         });
