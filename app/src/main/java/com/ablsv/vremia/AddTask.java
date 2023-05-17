@@ -69,30 +69,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         tasktitleinput = findViewById(R.id.tasktitleinput);
         taskdescrinput = findViewById(R.id.taskdescrinput);
 
-        savebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                
-                Drawable imageDrawable = imageSelector_AddTask.getDrawable();
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) imageDrawable;
-                Bitmap bitmap = bitmapDrawable.getBitmap();
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] imageBytes = stream.toByteArray();
-
-                String imageData = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-
-                DatabaseHelper svl = new DatabaseHelper(AddTask.this);
-                svl.addTask(tasktitleinput.getText().toString(), taskdescrinput.getText().toString(), taskColor, date_year, date_month, date_dayofmonth, time_hour, time_minute, imageData);
-
-                Toast.makeText(AddTask.this, "Your task is created.", Toast.LENGTH_SHORT).show();
-
-                Intent intentToMain = new Intent(AddTask.this, MainActivity.class);
-                startActivity(intentToMain);
-
-                finish();
-            }
-        });
         cancelbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -214,6 +190,31 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         });
 
 
+        savebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Drawable imageDrawable = imageSelector_AddTask.getDrawable();
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) imageDrawable;
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] imageBytes = stream.toByteArray();
+
+                String imageData = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
+                DatabaseHelper svl = new DatabaseHelper(AddTask.this);
+                svl.addTask(tasktitleinput.getText().toString(), taskdescrinput.getText().toString(), taskColor, date_year, date_month, date_dayofmonth, time_hour, time_minute, imageData);
+
+                Toast.makeText(AddTask.this, "Your task is created.", Toast.LENGTH_SHORT).show();
+
+                Intent intentToMain = new Intent(AddTask.this, MainActivity.class);
+                startActivity(intentToMain);
+
+                finish();
+            }
+        });
+
         //End of onCreate method
     }
 
@@ -227,8 +228,13 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayofmonth);
         String cdatestr = DateFormat.getDateInstance().format(c.getTime());
+
         dateTimePreview.setText("Input: " + cdatestr);
         presentDay = cdatestr;
+
+        date_year = year;
+        date_month = month;
+        date_dayofmonth = dayofmonth;
     }
 
     @Override
@@ -240,6 +246,8 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         dateTimePreview.setText(dateTimePreview.getText().toString() + ", " + currentTime);
         presentTime = currentTime;
 
+        time_hour = hour;
+        time_minute = minute;
     }
 
     public void openColorPicker() {
