@@ -84,6 +84,9 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 alert.setPositiveButton("Yes (Discard Task)", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Intent intentToMain = new Intent(AddTask.this, MainActivity.class);
+                        startActivity(intentToMain);
                         finish();
                     }
                 });
@@ -216,6 +219,31 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         });
 
         //End of onCreate method
+    }
+
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(AddTask.this);
+        alert.setTitle("Confirm");
+        alert.setIcon(R.drawable.baseline_warning_amber_24);
+        alert.setMessage("You have an unsaved task. Are you sure you want to exit?");
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        alert.setPositiveButton("Yes (Discard Task)", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Intent intentToMain = new Intent(AddTask.this, MainActivity.class);
+                startActivity(intentToMain);
+                finish();
+            }
+        });
+        alert.show();
     }
 
     String presentDay, presentTime;
