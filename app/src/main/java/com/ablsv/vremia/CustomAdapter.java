@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.text.format.DateFormat;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -63,6 +64,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.title_task.setText((CharSequence) task_title.get(position));
         holder.color_task.setBackgroundColor(Integer.parseInt(String.valueOf(task_color.get(position))));
+
+        int taskColor = Integer.parseInt(String.valueOf(task_color.get(position)));
+        int taskColorR = Color.red(taskColor);
+        int taskColorG = Color.green(taskColor);
+        int taskColorB = Color.blue(taskColor);
+
+        double taskColorBrightness = (taskColorR * 0.299 + taskColorG * 0.587 + taskColorB * 0.114) / 255;
+
+        if(taskColorBrightness > 0.5)
+        {
+            holder.title_task.setTextColor(Color.BLACK);
+            holder.date_task.setTextColor(Color.BLACK);
+        }
+        else {
+            holder.title_task.setTextColor(Color.WHITE);
+            holder.date_task.setTextColor(Color.WHITE);
+        }
+
 
         Calendar c = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());

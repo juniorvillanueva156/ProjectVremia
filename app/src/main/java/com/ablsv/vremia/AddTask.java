@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -70,28 +71,11 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         taskdescrinput = findViewById(R.id.taskdescrinput);
 
         cancelbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(AddTask.this);
-                alert.setTitle("Confirm");
-                alert.setIcon(R.drawable.baseline_warning_amber_24);
-                alert.setMessage("You have an unsaved task. Are you sure you want to exit?");
-                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                });
-                alert.setPositiveButton("Yes (Discard Task)", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                        Intent intentToMain = new Intent(AddTask.this, MainActivity.class);
-                        startActivity(intentToMain);
-                        finish();
-                    }
-                });
-                alert.show();
-            }
+          @Override
+            public void onClick(View view)
+          {
+              canceltask();
+          }
         });
 
         openDateTimePicker.setOnClickListener(new View.OnClickListener() {
@@ -197,6 +181,8 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
             @Override
             public void onClick(View view) {
 
+                taskColor = ((ColorDrawable) colorpicker_preview.getBackground()).getColor();
+
                 Drawable imageDrawable = imageSelector_AddTask.getDrawable();
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) imageDrawable;
                 Bitmap bitmap = bitmapDrawable.getBitmap();
@@ -218,32 +204,45 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
             }
         });
 
+
+
         //End of onCreate method
     }
 
+    @Override
     public void onBackPressed()
     {
         super.onBackPressed();
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(AddTask.this);
-        alert.setTitle("Confirm");
-        alert.setIcon(R.drawable.baseline_warning_amber_24);
-        alert.setMessage("You have an unsaved task. Are you sure you want to exit?");
-        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        Intent intentToMain = new Intent(AddTask.this, MainActivity.class);
+        startActivity(intentToMain);
+        finish();
+    }
+
+    public void canceltask()
+    {
+        AlertDialog.Builder alert2 = new AlertDialog.Builder(AddTask.this);
+        alert2.setTitle("Confirm");
+        alert2.setIcon(R.drawable.baseline_warning_amber_24);
+        alert2.setMessage("You have an unsaved task. Are you sure you want to exit?");
+        alert2.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
             }
         });
-        alert.setPositiveButton("Yes (Discard Task)", new DialogInterface.OnClickListener() {
+        alert2.setPositiveButton("Yes (Discard Task)", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
 
                 Intent intentToMain = new Intent(AddTask.this, MainActivity.class);
                 startActivity(intentToMain);
                 finish();
             }
         });
-        alert.show();
+        alert2.show();
     }
 
     String presentDay, presentTime;

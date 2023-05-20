@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             task_minute,
             task_imagedata;
 
+    ImageView deletetasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,35 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AddTask.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+        deletetasks = (ImageView) findViewById(R.id.delete_tasks);
+        deletetasks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Delete All Tasks?")
+                        .setIcon(R.drawable.baseline_delete_forever_24)
+                        .setMessage("Do you want to delete all tasks? This operation cannot be undone.")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                DatabaseHelper myDB = new DatabaseHelper(MainActivity.this);
+                                myDB.deleteAllData();
+                                dialogInterface.dismiss();
+
+                                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+                builder.show();
             }
         });
 
@@ -97,21 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    void deleteAll(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete All?");
-        builder.setIcon(R.drawable.baseline_delete_forever_24);
-        builder.setMessage("Are you sure you want to delete all Data?");
-        AlertDialog.Builder yes = builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                DatabaseHelper myDB = new DatabaseHelper(MainActivity.this);
-                myDB.deleteAllData();
 
-                //Refresh Activity
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-    }}
+
+}

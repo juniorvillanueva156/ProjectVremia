@@ -9,6 +9,7 @@
     android:padding="10dp">
 
     <TextView
+        android:id="@+id/headertext"
         android:textAppearance="@style/VremiaLogoFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,5 +22,16 @@
         android:textColor="@color/white"
         android:textSize="23sp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/delete_tasks"
+        android:layout_width="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_height="50dp"
+        android:src="@drawable/baseline_delete_forever_24"
+        android:scaleType="fitXY"
+        android:padding="5dp"
+        app:tint="@color/white" />
 
 </RelativeLayout>
