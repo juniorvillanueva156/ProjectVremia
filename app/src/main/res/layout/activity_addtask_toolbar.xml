@@ -26,7 +26,7 @@
         android:padding="0dp"
 
         android:text="@string/addtasktoolbar_header"
-        android:textAppearance="@style/VremiaLogoFont"
+        android:fontFamily="@font/avantgarde"
         android:textColor="@color/white"
         android:textSize="23sp"
         android:textStyle="bold" />

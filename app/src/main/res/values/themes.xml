@@ -14,7 +14,4 @@
         <item name="fontFamily">@font/calibrireg</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="VremiaLogoFont">
-        <item name="fontFamily">@font/avantgarde</item>
-    </style>
 </resources>
