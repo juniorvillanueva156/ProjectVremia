@@ -3,6 +3,7 @@ package com.ablsv.vremia;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -61,7 +62,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.title_task.setText((CharSequence) task_title.get(position));
         holder.color_task.setBackgroundColor(Integer.parseInt(String.valueOf(task_color.get(position))));
 
@@ -99,7 +100,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 Integer.parseInt(String.valueOf(task_hour.get(position))),
                 Integer.parseInt(String.valueOf(task_minute.get(position))));
 
-                holder.date_task.setText(presentDay +", "+ presentTime);
+                String PresentDayPresentTime = presentDay + ", " + presentTime;
+                holder.date_task.setText(PresentDayPresentTime);
 
         String base64String = String.valueOf(task_imagedata.get(position));
         byte[] byteArray = Base64.decode(base64String, Base64.DEFAULT);
@@ -107,8 +109,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
 
         holder.image_task.setImageBitmap(bitmap);
+        holder.mainlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, EditTask.class);
 
-        //TODO: Set Custom View in Main Activity, run the app and debug.
+                EditTask editTask = new EditTask();
+                activity.startActivity(intent);
+
+                editTask.getTaskInformation((String) task_id.get(position), bitmap, (String) task_title.get(position), (String) task_description.get(position), presentDay, presentTime, taskColor);
+
+                activity.finish();
+            }
+        });
     }
 
     @Override

@@ -13,7 +13,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -34,7 +33,6 @@ import java.io.File;
 import java.text.DateFormat;
 import android.util.Base64;
 import java.util.Calendar;
-import java.util.Locale;
 
 import io.kredibel.picker.Picker;
 import io.kredibel.picker.PickerListener;
@@ -57,18 +55,18 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         super.onCreate(sis);
         setContentView(R.layout.activity_addtask);
 
-        openDateTimePicker = findViewById(R.id.button_opendateandtime);
-        colorpickerhexinput = findViewById(R.id.colorpickerhexinput);
-        colorpickerbtn = findViewById(R.id.colorpickerbtn);
+        openDateTimePicker = findViewById(R.id.editTaskOpenDatePicker);
+        colorpickerhexinput = findViewById(R.id.editTaskColorHexInput);
+        colorpickerbtn = findViewById(R.id.editTaskColorPicker);
         colorpicker_preview = findViewById(R.id.colorpicker_preview);
-        imageSelector_AddTask = findViewById(R.id.imageSelector_addtask);
-        dateTimePreview = findViewById(R.id.datetimepreview);
+        imageSelector_AddTask = findViewById(R.id.editTaskImageSelector);
+        dateTimePreview = findViewById(R.id.editTaskDatePreview);
         savebtn = findViewById(R.id.saveaddtasktoolbar);
         cancelbtn = findViewById(R.id.canceladdtasktoolbar);
         TextView taskcolortext = findViewById(R.id.settaskcolortext);
         Picker imagepick = new Picker(AddTask.this);
-        tasktitleinput = findViewById(R.id.tasktitleinput);
-        taskdescrinput = findViewById(R.id.taskdescrinput);
+        tasktitleinput = findViewById(R.id.editTaskTitleInput);
+        taskdescrinput = findViewById(R.id.editTaskDescriptionInput);
 
         cancelbtn.setOnClickListener(new View.OnClickListener() {
           @Override

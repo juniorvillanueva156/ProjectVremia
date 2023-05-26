@@ -40,6 +40,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
 
     }
+    public void deleteTask(String id)
+    {
+        //TODO: add delete task function
+    }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);

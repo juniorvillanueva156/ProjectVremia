@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(cadapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        //TODO: Successfully add a task and show it on menu.
         //TODO: Perform debugging at application build and run, spot errors, fix shit, ask stackov and cgpt, etc.
     }
     void storedatainarrays()

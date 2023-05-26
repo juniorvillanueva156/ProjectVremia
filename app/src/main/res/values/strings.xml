@@ -9,4 +9,5 @@
     <string name="open_date_and_time_picker">OPEN DATE AND TIME PICKER</string>
     <string name="or_type_the_color_s_hexadecimal_value">or Type the Color\'s Hexadecimal Value</string>
     <string name="ffffff">FFFFFF</string>
+    <string name="edit_a_task">Edit a Task</string>
 </resources>
